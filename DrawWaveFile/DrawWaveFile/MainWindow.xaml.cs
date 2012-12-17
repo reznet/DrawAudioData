@@ -28,11 +28,34 @@ namespace DrawWaveFile
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
+            Attempt2();            
+        }
 
+        private void Attempt2()
+        {
+            const int width = 200;
+            WriteableBitmap bitmap = BitmapFactory.New(width, 2 << 8);
+            imageControl.Source = bitmap;
+
+            using (bitmap.GetBitmapContext())
+            {
+                bitmap.Clear(Colors.White);
+
+                for (int i = 0; i < width; i++)
+                {
+                    int x = i;
+                    int y = 10;
+
+                    bitmap.SetPixel(x, y, Colors.Black);
+                }
+            }
+        }
+
+        private void Attempt1()
+        {
             const int width = 110;
 
             WriteableBitmap bitmap = BitmapFactory.New(width, 2 << 8);
-
 
             using (bitmap.GetBitmapContext())
             {
@@ -49,34 +72,14 @@ namespace DrawWaveFile
                     byte low = data[i++];
                     byte high = data[i++];
 
-                    //Console.WriteLine("low: {0}, high:{1}", low, high);
-
-                    int l = Convert.ToInt32(low);
-                    int h = Convert.ToInt32(high);
-
-                    //Console.WriteLine("l: {0}, h:{1}", l, h);
-
-                    int y = (h << 8) + l;
+                    int y = (high << 8) + low;
 
                     Console.WriteLine("y:{0}", y);
-
-                    //y = y >> 8;
-
-                    //y = h;
-
-                    Console.WriteLine(y);
 
                     bitmap.SetPixel(x++, y, Colors.Black);
                 }
 
-                //for (int i = 0; i < data.Length && x < 100; i++)
-                //{
-                //    byte b = data[i];
-                //    bitmap.SetPixel(x++, Convert.ToInt32(b), Colors.Black);
-                //}
-
                 imageControl.Source = bitmap;
-                //bitmap.AddDirtyRect(new Int32Rect(0, 0, bitmap.PixelWidth, bitmap.PixelHeight));
             }
         }
     }
