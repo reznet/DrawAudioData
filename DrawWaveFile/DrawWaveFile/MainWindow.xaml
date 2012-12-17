@@ -3,7 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded_1">
     <Grid>
-        <Image x:Name="imageControl" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+        
+        
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalScrollBarVisibility="Visible">
+            <Image x:Name="imageControl" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+        </ScrollViewer>
 
     </Grid>
 </Window>
